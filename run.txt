@@ -1,0 +1,17 @@
+To preprocess data to h5 file:
+python preprocess.py -o my.h5 -i "testdata/SampleData" --stride 32 --scale 2 --patch-size 32
+
+To train the model:
+python train.py -t "traindata/HDF5_format/91-image_x4.h5" -o "outputs/" -s 4 -n 2 -e 30
+
+To auto evaluate model:
+python eval.py -w "outputs/x4/epoch50.pth" -e "testdata/Set5_x4.h5"
+
+To manually test the model and view pics side by side:
+python test.py -w "outputs/x4/epoch50.pth" -i "testdata/SampleData/LowRes.jpg" -s 4
+
+To also save the super resolved image:
+python test.py -w "outputs/x4/epoch50.pth" -i "testdata/SampleData/LowRespic.jpg" -s 4 -o testdata/SampleData/picsrx4.png
+
+To generate super resolved video:
+python vsr.py -w "outputs/x3/epoch50.pth" -v "vsr/vid.mp4" -o "vsr/vidsr.avi" -s 3
